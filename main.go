@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"path"
 )
+
 func main(){	
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
@@ -18,7 +19,7 @@ func main(){
 		
 		var data = map[string]interface{}{
 			"title": "learning golang web",
-			"name": "batman",
+			"name": "Dimas",
 		}
 		
 		err = tmpl.Execute(w, data)
@@ -26,10 +27,11 @@ func main(){
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 	})
- http.Handle("/static/", 
+	
+	http.Handle("/static/", 
         http.StripPrefix("/static/", 
             http.FileServer(http.Dir("assets"))))
 
-    fmt.Println("server started at localhost:9000")
-    http.ListenAndServe(":9000", nil)
+    	fmt.Println("server started at localhost:9000")
+     	http.ListenAndServe(":9000", nil)
 }
